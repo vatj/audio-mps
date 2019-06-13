@@ -1,0 +1,1648 @@
+================================================================================
+Input tree: '../audio-mps'
+================================================================================
+--------------------------------------------------------------------------------
+Processing file '../audio-mps/utils.py'
+ outputting to './new/utils.py'
+--------------------------------------------------------------------------------
+
+'../audio-mps/utils.py' Line 6
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.variable_scope' to 'tf.compat.v1.variable_scope'
+
+    Old:     with tf.variable_scope("symmetrize"):
+                  ~~~~~~~~~~~~~~~~~                
+    New:     with tf.compat.v1.variable_scope("symmetrize"):
+                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~                
+
+'../audio-mps/utils.py' Line 7
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.matrix_band_part' to 'tf.linalg.band_part'
+
+    Old:         M_lower = tf.matrix_band_part(M, -1, 0)
+                           ~~~~~~~~~~~~~~~~~~~           
+    New:         M_lower = tf.linalg.band_part(M, -1, 0)
+                           ~~~~~~~~~~~~~~~~~~~           
+
+'../audio-mps/utils.py' Line 8
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.matrix_transpose' to 'tf.linalg.transpose'
+Renamed function 'tf.diag_part' to 'tf.linalg.tensor_diag_part'
+
+    Old:         return M_lower + tf.matrix_transpose(M_lower) - tf.diag_part(M)
+                                  ~~~~~~~~~~~~~~~~~~~            ~~~~~~~~~~~~    
+    New:         return M_lower + tf.linalg.transpose(M_lower) - tf.linalg.tensor_diag_part(M)
+                                  ~~~~~~~~~~~~~~~~~~~            ~~~~~~~~~~~~~~~~~~~~~~~~~~    
+
+
+--------------------------------------------------------------------------------
+Processing file '../audio-mps/model.py'
+ outputting to './new/model.py'
+--------------------------------------------------------------------------------
+
+'../audio-mps/model.py' Line 19
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.get_variable' to 'tf.compat.v1.get_variable'
+
+    Old:         self.A = tf.get_variable("A", dtype=tf.float32, initializer=hparams.A)
+                          ~~~~~~~~~~~~~~~                                               
+    New:         self.A = tf.compat.v1.get_variable("A", dtype=tf.float32, initializer=hparams.A)
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~                                               
+
+'../audio-mps/model.py' Line 32
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.get_variable' to 'tf.compat.v1.get_variable'
+
+    Old:             Rx = tf.get_variable("Rx", dtype=tf.float32, initializer=R_in.real)
+                          ~~~~~~~~~~~~~~~                                                
+    New:             Rx = tf.compat.v1.get_variable("Rx", dtype=tf.float32, initializer=R_in.real)
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~                                                
+
+'../audio-mps/model.py' Line 33
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.get_variable' to 'tf.compat.v1.get_variable'
+
+    Old:             Ry = tf.get_variable("Ry", dtype=tf.float32, initializer=R_in.imag)
+                          ~~~~~~~~~~~~~~~                                                
+    New:             Ry = tf.compat.v1.get_variable("Ry", dtype=tf.float32, initializer=R_in.imag)
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~                                                
+
+'../audio-mps/model.py' Line 36
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.rsqrt' to 'tf.math.rsqrt'
+Renamed function 'tf.get_variable' to 'tf.compat.v1.get_variable'
+
+    Old:             Rx = tf.rsqrt(self.r_reg) * tf.get_variable("Rx", shape=2*[self.bond_d], dtype=tf.float32,
+                          ~~~~~~~~               ~~~~~~~~~~~~~~~                                                
+    New:             Rx = tf.math.rsqrt(self.r_reg) * tf.compat.v1.get_variable("Rx", shape=2*[self.bond_d], dtype=tf.float32,
+                          ~~~~~~~~~~~~~               ~~~~~~~~~~~~~~~~~~~~~~~~~                                                
+
+'../audio-mps/model.py' Line 38
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.rsqrt' to 'tf.math.rsqrt'
+Renamed function 'tf.get_variable' to 'tf.compat.v1.get_variable'
+
+    Old:             Ry = tf.rsqrt(self.r_reg) * tf.get_variable("Ry", shape=2*[self.bond_d], dtype=tf.float32,
+                          ~~~~~~~~               ~~~~~~~~~~~~~~~                                                
+    New:             Ry = tf.math.rsqrt(self.r_reg) * tf.compat.v1.get_variable("Ry", shape=2*[self.bond_d], dtype=tf.float32,
+                          ~~~~~~~~~~~~~               ~~~~~~~~~~~~~~~~~~~~~~~~~                                                
+
+'../audio-mps/model.py' Line 42
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.matrix_diag_part' to 'tf.linalg.diag_part'
+
+    Old:         self.R -= tf.matrix_diag_part(self.R) # Remove diagonal part
+                           ~~~~~~~~~~~~~~~~~~~                                
+    New:         self.R -= tf.linalg.diag_part(self.R) # Remove diagonal part
+                           ~~~~~~~~~~~~~~~~~~~                                
+
+'../audio-mps/model.py' Line 46
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.get_variable' to 'tf.compat.v1.get_variable'
+
+    Old:             self.freqs = tf.get_variable("freqs", dtype=tf.float32, initializer=freqs_in)
+                                  ~~~~~~~~~~~~~~~                                                  
+    New:             self.freqs = tf.compat.v1.get_variable("freqs", dtype=tf.float32, initializer=freqs_in)
+                                  ~~~~~~~~~~~~~~~~~~~~~~~~~                                                  
+
+'../audio-mps/model.py' Line 49
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.rsqrt' to 'tf.math.rsqrt'
+Renamed function 'tf.get_variable' to 'tf.compat.v1.get_variable'
+
+    Old:             self.freqs = tf.rsqrt(self.h_reg) * tf.get_variable("freqs", shape=[self.bond_d], dtype=tf.float32,
+                                  ~~~~~~~~               ~~~~~~~~~~~~~~~                                                 
+    New:             self.freqs = tf.math.rsqrt(self.h_reg) * tf.compat.v1.get_variable("freqs", shape=[self.bond_d], dtype=tf.float32,
+                                  ~~~~~~~~~~~~~               ~~~~~~~~~~~~~~~~~~~~~~~~~                                                 
+
+'../audio-mps/model.py' Line 82
+--------------------------------------------------------------------------------
+
+Added keyword 'a' to reordered function 'tf.transpose'
+Added keyword 'perm' to reordered function 'tf.transpose'
+
+    Old:         incs = tf.transpose(incs, [1, 0])
+                                                   
+    New:         incs = tf.transpose(a=incs, perm=[1, 0])
+                                     ~~      ~~~~~        
+
+'../audio-mps/model.py' Line 85
+--------------------------------------------------------------------------------
+
+Added keyword 'a' to reordered function 'tf.transpose'
+Added keyword 'perm' to reordered function 'tf.transpose'
+
+    Old:         return tf.transpose(rho, [1, 0, 2, 3])
+                                                        
+    New:         return tf.transpose(a=rho, perm=[1, 0, 2, 3])
+                                     ~~     ~~~~~              
+
+'../audio-mps/model.py' Line 90
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.random_normal' to 'tf.random.normal'
+
+    Old:         noise = tf.random_normal([length, num_samples], stddev=self.sigma * np.sqrt(temp * self.delta_t))
+                         ~~~~~~~~~~~~~~~~                                                                          
+    New:         noise = tf.random.normal([length, num_samples], stddev=self.sigma * np.sqrt(temp * self.delta_t))
+                         ~~~~~~~~~~~~~~~~                                                                          
+
+'../audio-mps/model.py' Line 93
+--------------------------------------------------------------------------------
+
+Added keyword 'a' to reordered function 'tf.transpose'
+Added keyword 'perm' to reordered function 'tf.transpose'
+
+    Old:         return tf.transpose(rho, [1, 0, 2, 3])
+                                                        
+    New:         return tf.transpose(a=rho, perm=[1, 0, 2, 3])
+                                     ~~     ~~~~~              
+
+'../audio-mps/model.py' Line 98
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.random_normal' to 'tf.random.normal'
+
+    Old:         noise = tf.random_normal([length, num_samples], stddev=self.sigma * np.sqrt(temp * self.delta_t))
+                         ~~~~~~~~~~~~~~~~                                                                          
+    New:         noise = tf.random.normal([length, num_samples], stddev=self.sigma * np.sqrt(temp * self.delta_t))
+                         ~~~~~~~~~~~~~~~~                                                                          
+
+'../audio-mps/model.py' Line 101
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.real' to 'tf.math.real'
+Added keyword 'a' to reordered function 'tf.transpose'
+Renamed function 'tf.trace' to 'tf.linalg.trace'
+Added keyword 'perm' to reordered function 'tf.transpose'
+
+    Old:         return tf.real(tf.transpose(tf.trace(tf.einsum('abcd,abde->abce', rho, rho)), [1, 0]))
+                        ~~~~~~~              ~~~~~~~~                                                   
+    New:         return tf.math.real(tf.transpose(a=tf.linalg.trace(tf.einsum('abcd,abde->abce', rho, rho)), perm=[1, 0]))
+                        ~~~~~~~~~~~~              ~~~~~~~~~~~~~~~~~                                          ~~~~~         
+
+'../audio-mps/model.py' Line 107
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.random_normal' to 'tf.random.normal'
+
+    Old:         noise = tf.random_normal([length, num_samples], stddev=self.sigma * np.sqrt(temp * self.delta_t))
+                         ~~~~~~~~~~~~~~~~                                                                          
+    New:         noise = tf.random.normal([length, num_samples], stddev=self.sigma * np.sqrt(temp * self.delta_t))
+                         ~~~~~~~~~~~~~~~~                                                                          
+
+'../audio-mps/model.py' Line 112
+--------------------------------------------------------------------------------
+
+Added keyword 'a' to reordered function 'tf.transpose'
+Added keyword 'perm' to reordered function 'tf.transpose'
+
+    Old:         return self.A * tf.transpose(samples, [1, 0])
+                                                               
+    New:         return self.A * tf.transpose(a=samples, perm=[1, 0])
+                                              ~~         ~~~~~        
+
+'../audio-mps/model.py' Line 122
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.get_variable' to 'tf.compat.v1.get_variable'
+
+    Old:             Wx = tf.get_variable("Wx", dtype=tf.float32, initializer=Wx_in)
+                          ~~~~~~~~~~~~~~~                                            
+    New:             Wx = tf.compat.v1.get_variable("Wx", dtype=tf.float32, initializer=Wx_in)
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~                                            
+
+'../audio-mps/model.py' Line 123
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.get_variable' to 'tf.compat.v1.get_variable'
+
+    Old:             Wy = tf.get_variable("Wy", dtype=tf.float32, initializer=Wy_in)
+                          ~~~~~~~~~~~~~~~                                            
+    New:             Wy = tf.compat.v1.get_variable("Wy", dtype=tf.float32, initializer=Wy_in)
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~                                            
+
+'../audio-mps/model.py' Line 125
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.get_variable' to 'tf.compat.v1.get_variable'
+
+    Old:             Wx = tf.get_variable("Wx", shape=[self.rank_rho_0, self.bond_d], dtype=tf.float32, initializer=None)
+                          ~~~~~~~~~~~~~~~                                                                                 
+    New:             Wx = tf.compat.v1.get_variable("Wx", shape=[self.rank_rho_0, self.bond_d], dtype=tf.float32, initializer=None)
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~                                                                                 
+
+'../audio-mps/model.py' Line 126
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.get_variable' to 'tf.compat.v1.get_variable'
+
+    Old:             Wy = tf.get_variable("Wy", shape=[self.rank_rho_0, self.bond_d], dtype=tf.float32, initializer=None)
+                          ~~~~~~~~~~~~~~~                                                                                 
+    New:             Wy = tf.compat.v1.get_variable("Wy", shape=[self.rank_rho_0, self.bond_d], dtype=tf.float32, initializer=None)
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~                                                                                 
+
+'../audio-mps/model.py' Line 129
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.trace' to 'tf.linalg.trace'
+
+    Old:         rho_0 = rho_0 / tf.trace(rho_0)
+                                 ~~~~~~~~        
+    New:         rho_0 = rho_0 / tf.linalg.trace(rho_0)
+                                 ~~~~~~~~~~~~~~~        
+
+'../audio-mps/model.py' Line 139
+--------------------------------------------------------------------------------
+
+Added keyword 'a' to reordered function 'tf.transpose'
+Added keyword 'perm' to reordered function 'tf.transpose'
+
+    Old:         incs = tf.transpose(incs, [1, 0])  # foldl goes along the 1st dimension
+                                                                                         
+    New:         incs = tf.transpose(a=incs, perm=[1, 0])  # foldl goes along the 1st dimension
+                                     ~~      ~~~~~                                              
+
+'../audio-mps/model.py' Line 142
+--------------------------------------------------------------------------------
+
+Added keyword 'input_tensor' to reordered function 'tf.reduce_mean'
+
+    Old:         return tf.reduce_mean(loss)
+                                             
+    New:         return tf.reduce_mean(input_tensor=loss)
+                                       ~~~~~~~~~~~~~      
+
+'../audio-mps/model.py' Line 170
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.log' to 'tf.math.log'
+
+    Old:         return - tf.log(1. + self._expectation(rho, t) * signal / self.A)
+                          ~~~~~~                                                   
+    New:         return - tf.math.log(1. + self._expectation(rho, t) * signal / self.A)
+                          ~~~~~~~~~~~                                                   
+
+'../audio-mps/model.py' Line 174
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.variable_scope' to 'tf.compat.v1.variable_scope'
+
+    Old:         with tf.variable_scope("update_ancilla"):
+                      ~~~~~~~~~~~~~~~~~                    
+    New:         with tf.compat.v1.variable_scope("update_ancilla"):
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~                    
+
+'../audio-mps/model.py' Line 179
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.conj' to 'tf.math.conj'
+
+    Old:             Rt = tf.einsum('a,ab,b->ab', phases, self.R, tf.conj(phases))
+                                                                  ~~~~~~~          
+    New:             Rt = tf.einsum('a,ab,b->ab', phases, self.R, tf.math.conj(phases))
+                                                                  ~~~~~~~~~~~~          
+
+'../audio-mps/model.py' Line 190
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.variable_scope' to 'tf.compat.v1.variable_scope'
+
+    Old:         with tf.variable_scope("expectation"):
+                      ~~~~~~~~~~~~~~~~~                 
+    New:         with tf.compat.v1.variable_scope("expectation"):
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~                 
+
+'../audio-mps/model.py' Line 193
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.conj' to 'tf.math.conj'
+
+    Old:             Rt = tf.einsum('a,ab,b->ab', phases, self.R, tf.conj(phases))
+                                                                  ~~~~~~~          
+    New:             Rt = tf.einsum('a,ab,b->ab', phases, self.R, tf.math.conj(phases))
+                                                                  ~~~~~~~~~~~~          
+
+'../audio-mps/model.py' Line 195
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.trace' to 'tf.linalg.trace'
+
+    Old:             exp = tf.trace(tf.einsum('ab,cbd->cad', x, rho))
+                           ~~~~~~~~                                   
+    New:             exp = tf.linalg.trace(tf.einsum('ab,cbd->cad', x, rho))
+                           ~~~~~~~~~~~~~~~                                   
+
+'../audio-mps/model.py' Line 196
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.real' to 'tf.math.real'
+
+    Old:             return tf.real(exp)
+                            ~~~~~~~      
+    New:             return tf.math.real(exp)
+                            ~~~~~~~~~~~~      
+
+'../audio-mps/model.py' Line 199
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.variable_scope' to 'tf.compat.v1.variable_scope'
+
+    Old:         with tf.variable_scope("normalize"):
+                      ~~~~~~~~~~~~~~~~~               
+    New:         with tf.compat.v1.variable_scope("normalize"):
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~               
+
+'../audio-mps/model.py' Line 200
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.trace' to 'tf.linalg.trace'
+Added keyword 'input' to reordered function 'tf.shape'
+
+    Old:             tr = tf.reshape(tf.trace(x), [tf.shape(x)[0], 1, 1])
+                                     ~~~~~~~~                             
+    New:             tr = tf.reshape(tf.linalg.trace(x), [tf.shape(input=x)[0], 1, 1])
+                                     ~~~~~~~~~~~~~~~               ~~~~~~              
+
+'../audio-mps/model.py' Line 201
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.reciprocal' to 'tf.math.reciprocal'
+Renamed function 'tf.real' to 'tf.math.real'
+
+    Old:             x_inv_tr = tf.reciprocal(tf.maximum(tf.real(tr), epsilon))
+                                ~~~~~~~~~~~~~            ~~~~~~~                
+    New:             x_inv_tr = tf.math.reciprocal(tf.maximum(tf.math.real(tr), epsilon))
+                                ~~~~~~~~~~~~~~~~~~            ~~~~~~~~~~~~                
+
+'../audio-mps/model.py' Line 215
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.get_variable' to 'tf.compat.v1.get_variable'
+
+    Old:             psi_x = tf.get_variable("psi_x", dtype=tf.float32, initializer=psi_x_in)
+                             ~~~~~~~~~~~~~~~                                                  
+    New:             psi_x = tf.compat.v1.get_variable("psi_x", dtype=tf.float32, initializer=psi_x_in)
+                             ~~~~~~~~~~~~~~~~~~~~~~~~~                                                  
+
+'../audio-mps/model.py' Line 216
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.get_variable' to 'tf.compat.v1.get_variable'
+
+    Old:             psi_y = tf.get_variable("psi_y", dtype=tf.float32, initializer=psi_y_in)
+                             ~~~~~~~~~~~~~~~                                                  
+    New:             psi_y = tf.compat.v1.get_variable("psi_y", dtype=tf.float32, initializer=psi_y_in)
+                             ~~~~~~~~~~~~~~~~~~~~~~~~~                                                  
+
+'../audio-mps/model.py' Line 218
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.get_variable' to 'tf.compat.v1.get_variable'
+
+    Old:             psi_x = tf.get_variable("psi_x", shape=[self.bond_d], dtype=tf.float32, initializer=None)
+                             ~~~~~~~~~~~~~~~                                                                   
+    New:             psi_x = tf.compat.v1.get_variable("psi_x", shape=[self.bond_d], dtype=tf.float32, initializer=None)
+                             ~~~~~~~~~~~~~~~~~~~~~~~~~                                                                   
+
+'../audio-mps/model.py' Line 219
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.get_variable' to 'tf.compat.v1.get_variable'
+
+    Old:             psi_y = tf.get_variable("psi_y", shape=[self.bond_d], dtype=tf.float32, initializer=None)
+                             ~~~~~~~~~~~~~~~                                                                   
+    New:             psi_y = tf.compat.v1.get_variable("psi_y", shape=[self.bond_d], dtype=tf.float32, initializer=None)
+                             ~~~~~~~~~~~~~~~~~~~~~~~~~                                                                   
+
+'../audio-mps/model.py' Line 237
+--------------------------------------------------------------------------------
+
+Added keyword 'a' to reordered function 'tf.transpose'
+Added keyword 'perm' to reordered function 'tf.transpose'
+
+    Old:         incs = tf.transpose(incs, [1, 0])
+                                                   
+    New:         incs = tf.transpose(a=incs, perm=[1, 0])
+                                     ~~      ~~~~~        
+
+'../audio-mps/model.py' Line 240
+--------------------------------------------------------------------------------
+
+Added keyword 'a' to reordered function 'tf.transpose'
+Added keyword 'perm' to reordered function 'tf.transpose'
+
+    Old:         return tf.transpose(psi, [1, 0, 2])
+                                                     
+    New:         return tf.transpose(a=psi, perm=[1, 0, 2])
+                                     ~~     ~~~~~           
+
+'../audio-mps/model.py' Line 246
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.random_normal' to 'tf.random.normal'
+
+    Old:         noise = tf.random_normal([length, num_samples], stddev=self.sigma * np.sqrt(temp * self.delta_t))
+                         ~~~~~~~~~~~~~~~~                                                                          
+    New:         noise = tf.random.normal([length, num_samples], stddev=self.sigma * np.sqrt(temp * self.delta_t))
+                         ~~~~~~~~~~~~~~~~                                                                          
+
+'../audio-mps/model.py' Line 251
+--------------------------------------------------------------------------------
+
+Added keyword 'a' to reordered function 'tf.transpose'
+Added keyword 'perm' to reordered function 'tf.transpose'
+
+    Old:         return self.A * tf.transpose(samples, [1, 0])
+                                                               
+    New:         return self.A * tf.transpose(a=samples, perm=[1, 0])
+                                              ~~         ~~~~~        
+
+'../audio-mps/model.py' Line 264
+--------------------------------------------------------------------------------
+
+Added keyword 'a' to reordered function 'tf.transpose'
+Added keyword 'perm' to reordered function 'tf.transpose'
+
+    Old:         incs = tf.transpose(incs, [1, 0])  # foldl goes along the 1st dimension
+                                                                                         
+    New:         incs = tf.transpose(a=incs, perm=[1, 0])  # foldl goes along the 1st dimension
+                                     ~~      ~~~~~                                              
+
+'../audio-mps/model.py' Line 267
+--------------------------------------------------------------------------------
+
+Added keyword 'input_tensor' to reordered function 'tf.reduce_mean'
+
+    Old:         return tf.reduce_mean(loss)
+                                             
+    New:         return tf.reduce_mean(input_tensor=loss)
+                                       ~~~~~~~~~~~~~      
+
+'../audio-mps/model.py' Line 294
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.log' to 'tf.math.log'
+
+    Old:         return - tf.log(1. + self._expectation(psi, t) * signal / self.A)
+                          ~~~~~~                                                   
+    New:         return - tf.math.log(1. + self._expectation(psi, t) * signal / self.A)
+                          ~~~~~~~~~~~                                                   
+
+'../audio-mps/model.py' Line 297
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.conj' to 'tf.math.conj'
+
+    Old:         exp = tf.einsum('ab,ab->a', tf.conj(psi), psi)
+                                             ~~~~~~~            
+    New:         exp = tf.einsum('ab,ab->a', tf.math.conj(psi), psi)
+                                             ~~~~~~~~~~~~            
+
+'../audio-mps/model.py' Line 298
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.real' to 'tf.math.real'
+
+    Old:         return tf.real(exp)
+                        ~~~~~~~      
+    New:         return tf.math.real(exp)
+                        ~~~~~~~~~~~~      
+
+'../audio-mps/model.py' Line 302
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.variable_scope' to 'tf.compat.v1.variable_scope'
+
+    Old:         with tf.variable_scope("update_ancilla"):
+                      ~~~~~~~~~~~~~~~~~                    
+    New:         with tf.compat.v1.variable_scope("update_ancilla"):
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~                    
+
+'../audio-mps/model.py' Line 306
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.conj' to 'tf.math.conj'
+
+    Old:             Upsi = psi * tf.conj(phases)
+                                  ~~~~~~~         
+    New:             Upsi = psi * tf.math.conj(phases)
+                                  ~~~~~~~~~~~~         
+
+'../audio-mps/model.py' Line 320
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.variable_scope' to 'tf.compat.v1.variable_scope'
+
+    Old:         with tf.variable_scope("expectation"):
+                      ~~~~~~~~~~~~~~~~~                 
+    New:         with tf.compat.v1.variable_scope("expectation"):
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~                 
+
+'../audio-mps/model.py' Line 323
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.conj' to 'tf.math.conj'
+
+    Old:             Upsi = psi * tf.conj(phases)
+                                  ~~~~~~~         
+    New:             Upsi = psi * tf.math.conj(phases)
+                                  ~~~~~~~~~~~~         
+
+'../audio-mps/model.py' Line 324
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.conj' to 'tf.math.conj'
+
+    Old:             exp = tf.einsum('ab,bc,ac->a', tf.conj(Upsi), self.R, Upsi)
+                                                    ~~~~~~~                      
+    New:             exp = tf.einsum('ab,bc,ac->a', tf.math.conj(Upsi), self.R, Upsi)
+                                                    ~~~~~~~~~~~~                      
+
+'../audio-mps/model.py' Line 325
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.real' to 'tf.math.real'
+
+    Old:             return 2 * tf.real(exp)  # Conveniently returns a float
+                                ~~~~~~~                                      
+    New:             return 2 * tf.math.real(exp)  # Conveniently returns a float
+                                ~~~~~~~~~~~~                                      
+
+'../audio-mps/model.py' Line 330
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.variable_scope' to 'tf.compat.v1.variable_scope'
+
+    Old:         with tf.variable_scope("normalize"):
+                      ~~~~~~~~~~~~~~~~~               
+    New:         with tf.compat.v1.variable_scope("normalize"):
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~               
+
+'../audio-mps/model.py' Line 331
+--------------------------------------------------------------------------------
+
+Added keyword 'input_tensor' to reordered function 'tf.reduce_sum'
+Added keyword 'axis' to reordered function 'tf.reduce_sum'
+
+    Old:             square_sum = tf.reduce_sum(tf.square(tf.abs(x)), axis, keepdims=True)
+                                                                                           
+    New:             square_sum = tf.reduce_sum(input_tensor=tf.square(tf.abs(x)), axis=axis, keepdims=True)
+                                                ~~~~~~~~~~~~~                      ~~~~~                     
+
+'../audio-mps/model.py' Line 332
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.rsqrt' to 'tf.math.rsqrt'
+
+    Old:             x_inv_norm = tf.rsqrt(tf.maximum(square_sum, epsilon))
+                                  ~~~~~~~~                                  
+    New:             x_inv_norm = tf.math.rsqrt(tf.maximum(square_sum, epsilon))
+                                  ~~~~~~~~~~~~~                                  
+
+
+--------------------------------------------------------------------------------
+Processing file '../audio-mps/sample.py'
+ outputting to './new/sample.py'
+--------------------------------------------------------------------------------
+
+'../audio-mps/sample.py' Line 5
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.set_random_seed' to 'tf.compat.v1.set_random_seed'
+
+    Old: tf.set_random_seed(0)
+         ~~~~~~~~~~~~~~~~~~    
+    New: tf.compat.v1.set_random_seed(0)
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~    
+
+'../audio-mps/sample.py' Line 7
+--------------------------------------------------------------------------------
+
+tf.flags has been removed, please use the argparse or absl module if you need command line parsing.
+
+    Old: FLAGS = tf.flags.FLAGS
+                 ~~~~~~~~       
+    New: FLAGS = tf.flags.FLAGS
+                 ~~~~~~~~       
+
+'../audio-mps/sample.py' Line 10
+--------------------------------------------------------------------------------
+
+tf.flags has been removed, please use the argparse or absl module if you need command line parsing.
+
+    Old: tf.flags.DEFINE_integer("sample_duration", 2**16, "Duration of samples (as integer).")
+         ~~~~~~~~                                                                               
+    New: tf.flags.DEFINE_integer("sample_duration", 2**16, "Duration of samples (as integer).")
+         ~~~~~~~~                                                                               
+
+'../audio-mps/sample.py' Line 11
+--------------------------------------------------------------------------------
+
+tf.flags has been removed, please use the argparse or absl module if you need command line parsing.
+
+    Old: tf.flags.DEFINE_integer("sample_rate", 16000, "Sampling rate.")
+         ~~~~~~~~                                                        
+    New: tf.flags.DEFINE_integer("sample_rate", 16000, "Sampling rate.")
+         ~~~~~~~~                                                        
+
+'../audio-mps/sample.py' Line 12
+--------------------------------------------------------------------------------
+
+tf.flags has been removed, please use the argparse or absl module if you need command line parsing.
+
+    Old: tf.flags.DEFINE_boolean('visualize', True, 'Produce visualization. Probably Slow!')
+         ~~~~~~~~                                                                            
+    New: tf.flags.DEFINE_boolean('visualize', True, 'Produce visualization. Probably Slow!')
+         ~~~~~~~~                                                                            
+
+'../audio-mps/sample.py' Line 14
+--------------------------------------------------------------------------------
+
+tf.flags has been removed, please use the argparse or absl module if you need command line parsing.
+
+    Old: tf.flags.DEFINE_string("modeldir", "./data", "Model directory.")
+         ~~~~~~~~                                                         
+    New: tf.flags.DEFINE_string("modeldir", "./data", "Model directory.")
+         ~~~~~~~~                                                         
+
+'../audio-mps/sample.py' Line 22
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.app.run' to 'tf.compat.v1.app.run'
+
+    Old:     tf.app.run(main)             ~~~~~~~~~~      
+    New:     tf.compat.v1.app.run(main)             ~~~~~~~~~~~~~~~~~~~~      
+
+
+--------------------------------------------------------------------------------
+Processing file '../audio-mps/train.py'
+ outputting to './new/train.py'
+--------------------------------------------------------------------------------
+
+'../audio-mps/train.py' Line 13
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.set_random_seed' to 'tf.compat.v1.set_random_seed'
+
+    Old: tf.set_random_seed(0)
+         ~~~~~~~~~~~~~~~~~~    
+    New: tf.compat.v1.set_random_seed(0)
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~    
+
+'../audio-mps/train.py' Line 15
+--------------------------------------------------------------------------------
+
+tf.flags has been removed, please use the argparse or absl module if you need command line parsing.
+
+    Old: FLAGS = tf.flags.FLAGS
+                 ~~~~~~~~       
+    New: FLAGS = tf.flags.FLAGS
+                 ~~~~~~~~       
+
+'../audio-mps/train.py' Line 18
+--------------------------------------------------------------------------------
+
+tf.flags has been removed, please use the argparse or absl module if you need command line parsing.
+
+    Old: tf.flags.DEFINE_enum('mps_model', 'psi_mps',
+         ~~~~~~~~                                     
+    New: tf.flags.DEFINE_enum('mps_model', 'psi_mps',
+         ~~~~~~~~                                     
+
+'../audio-mps/train.py' Line 23
+--------------------------------------------------------------------------------
+
+tf.flags has been removed, please use the argparse or absl module if you need command line parsing.
+
+    Old: tf.flags.DEFINE_enum('dataset', 'damped_sine',
+         ~~~~~~~~                                       
+    New: tf.flags.DEFINE_enum('dataset', 'damped_sine',
+         ~~~~~~~~                                       
+
+'../audio-mps/train.py' Line 27
+--------------------------------------------------------------------------------
+
+tf.flags has been removed, please use the argparse or absl module if you need command line parsing.
+
+    Old: tf.flags.DEFINE_integer("sample_duration", 2**16, "Duration of samples (as integer).")
+         ~~~~~~~~                                                                               
+    New: tf.flags.DEFINE_integer("sample_duration", 2**16, "Duration of samples (as integer).")
+         ~~~~~~~~                                                                               
+
+'../audio-mps/train.py' Line 28
+--------------------------------------------------------------------------------
+
+tf.flags has been removed, please use the argparse or absl module if you need command line parsing.
+
+    Old: tf.flags.DEFINE_integer("sample_rate", 16000, "Sampling rate.")
+         ~~~~~~~~                                                        
+    New: tf.flags.DEFINE_integer("sample_rate", 16000, "Sampling rate.")
+         ~~~~~~~~                                                        
+
+'../audio-mps/train.py' Line 29
+--------------------------------------------------------------------------------
+
+tf.flags has been removed, please use the argparse or absl module if you need command line parsing.
+
+    Old: tf.flags.DEFINE_boolean('visualize', True, 'Produce visualization. Probably slow!')
+         ~~~~~~~~                                                                            
+    New: tf.flags.DEFINE_boolean('visualize', True, 'Produce visualization. Probably slow!')
+         ~~~~~~~~                                                                            
+
+'../audio-mps/train.py' Line 30
+--------------------------------------------------------------------------------
+
+tf.flags has been removed, please use the argparse or absl module if you need command line parsing.
+
+    Old: tf.flags.DEFINE_integer('num_samples', 3, 'Number of samples to generate.')
+         ~~~~~~~~                                                                    
+    New: tf.flags.DEFINE_integer('num_samples', 3, 'Number of samples to generate.')
+         ~~~~~~~~                                                                    
+
+'../audio-mps/train.py' Line 31
+--------------------------------------------------------------------------------
+
+tf.flags has been removed, please use the argparse or absl module if you need command line parsing.
+
+    Old: tf.flags.DEFINE_string("hparams", "", 'Comma separated list of "name=value" pairs e.g. "--hparams=learning_rate=0.3"')
+         ~~~~~~~~                                                                                                               
+    New: tf.flags.DEFINE_string("hparams", "", 'Comma separated list of "name=value" pairs e.g. "--hparams=learning_rate=0.3"')
+         ~~~~~~~~                                                                                                               
+
+'../audio-mps/train.py' Line 32
+--------------------------------------------------------------------------------
+
+tf.flags has been removed, please use the argparse or absl module if you need command line parsing.
+
+    Old: tf.flags.DEFINE_string("datadir", "./data", "Data directory.")
+         ~~~~~~~~                                                       
+    New: tf.flags.DEFINE_string("datadir", "./data", "Data directory.")
+         ~~~~~~~~                                                       
+
+'../audio-mps/train.py' Line 33
+--------------------------------------------------------------------------------
+
+tf.flags has been removed, please use the argparse or absl module if you need command line parsing.
+
+    Old: tf.flags.DEFINE_string("logdir", f"../logging/audio_mps/{FLAGS.dataset}", "Directory to write logs.")
+         ~~~~~~~~                                                                                              
+    New: tf.flags.DEFINE_string("logdir", f"../logging/audio_mps/{FLAGS.dataset}", "Directory to write logs.")
+         ~~~~~~~~                                                                                              
+
+'../audio-mps/train.py' Line 46
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.variable_scope' to 'tf.compat.v1.variable_scope'
+
+    Old:     with tf.variable_scope("data"):
+                  ~~~~~~~~~~~~~~~~~          
+    New:     with tf.compat.v1.variable_scope("data"):
+                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~          
+
+'../audio-mps/train.py' Line 49
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.variable_scope' to 'tf.compat.v1.variable_scope'
+Renamed function 'tf.AUTO_REUSE' to 'tf.compat.v1.AUTO_REUSE'
+
+    Old:     with tf.variable_scope("model", reuse=tf.AUTO_REUSE):
+                  ~~~~~~~~~~~~~~~~~                ~~~~~~~~~~~~~   
+    New:     with tf.compat.v1.variable_scope("model", reuse=tf.compat.v1.AUTO_REUSE):
+                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~                ~~~~~~~~~~~~~~~~~~~~~~~   
+
+'../audio-mps/train.py' Line 55
+--------------------------------------------------------------------------------
+
+Added keyword 'input_tensor' to reordered function 'tf.reduce_sum'
+
+    Old:         h_l2sqnorm = tf.reduce_sum(tf.square(model.freqs))
+                                                                    
+    New:         h_l2sqnorm = tf.reduce_sum(input_tensor=tf.square(model.freqs))
+                                            ~~~~~~~~~~~~~                        
+
+'../audio-mps/train.py' Line 56
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.real' to 'tf.math.real'
+Added keyword 'input_tensor' to reordered function 'tf.reduce_sum'
+Renamed function 'tf.conj' to 'tf.math.conj'
+
+    Old:         r_l2sqnorm = tf.real(tf.reduce_sum(tf.conj(model.R) * model.R))
+                              ~~~~~~~               ~~~~~~~                      
+    New:         r_l2sqnorm = tf.math.real(tf.reduce_sum(input_tensor=tf.math.conj(model.R) * model.R))
+                              ~~~~~~~~~~~~               ~~~~~~~~~~~~~~~~~~~~~~~~~                      
+
+'../audio-mps/train.py' Line 58
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.variable_scope' to 'tf.compat.v1.variable_scope'
+
+    Old:     with tf.variable_scope("total_loss"):
+                  ~~~~~~~~~~~~~~~~~                
+    New:     with tf.compat.v1.variable_scope("total_loss"):
+                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~                
+
+'../audio-mps/train.py' Line 62
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.variable_scope' to 'tf.compat.v1.variable_scope'
+
+    Old:     with tf.variable_scope("summaries"):
+                  ~~~~~~~~~~~~~~~~~               
+    New:     with tf.compat.v1.variable_scope("summaries"):
+                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~               
+
+'../audio-mps/train.py' Line 63
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.summary.scalar' to 'tf.compat.v1.summary.scalar'
+
+    Old:         tf.summary.scalar("A", tf.cast(model.A, dtype=tf.float32))
+                 ~~~~~~~~~~~~~~~~~                                          
+    New:         tf.compat.v1.summary.scalar("A", tf.cast(model.A, dtype=tf.float32))
+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~                                          
+
+'../audio-mps/train.py' Line 64
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.summary.scalar' to 'tf.compat.v1.summary.scalar'
+
+    Old:         tf.summary.scalar("sigma", tf.cast(model.sigma, dtype=tf.float32))
+                 ~~~~~~~~~~~~~~~~~                                                  
+    New:         tf.compat.v1.summary.scalar("sigma", tf.cast(model.sigma, dtype=tf.float32))
+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~                                                  
+
+'../audio-mps/train.py' Line 65
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.summary.scalar' to 'tf.compat.v1.summary.scalar'
+
+    Old:         tf.summary.scalar("h_l2norm", tf.sqrt(h_l2sqnorm))
+                 ~~~~~~~~~~~~~~~~~                                  
+    New:         tf.compat.v1.summary.scalar("h_l2norm", tf.sqrt(h_l2sqnorm))
+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~                                  
+
+'../audio-mps/train.py' Line 66
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.summary.scalar' to 'tf.compat.v1.summary.scalar'
+
+    Old:         tf.summary.scalar("r_l2norm", tf.sqrt(r_l2sqnorm))
+                 ~~~~~~~~~~~~~~~~~                                  
+    New:         tf.compat.v1.summary.scalar("r_l2norm", tf.sqrt(r_l2sqnorm))
+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~                                  
+
+'../audio-mps/train.py' Line 69
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.summary.scalar' to 'tf.compat.v1.summary.scalar'
+
+    Old:         tf.summary.scalar("gr_decay_time", 1 / gr_rate)
+                 ~~~~~~~~~~~~~~~~~                               
+    New:         tf.compat.v1.summary.scalar("gr_decay_time", 1 / gr_rate)
+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~                               
+
+'../audio-mps/train.py' Line 71
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.summary.scalar' to 'tf.compat.v1.summary.scalar'
+
+    Old:         tf.summary.scalar("model_loss", tf.reshape(model.loss, []))
+                 ~~~~~~~~~~~~~~~~~                                           
+    New:         tf.compat.v1.summary.scalar("model_loss", tf.reshape(model.loss, []))
+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~                                           
+
+'../audio-mps/train.py' Line 72
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.summary.scalar' to 'tf.compat.v1.summary.scalar'
+
+    Old:         tf.summary.scalar("total_loss", tf.reshape(total_loss, []))
+                 ~~~~~~~~~~~~~~~~~                                           
+    New:         tf.compat.v1.summary.scalar("total_loss", tf.reshape(total_loss, []))
+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~                                           
+
+'../audio-mps/train.py' Line 74
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.summary.audio' to 'tf.compat.v1.summary.audio'
+
+    Old:         tf.summary.audio("data", data, sample_rate=FLAGS.sample_rate, max_outputs=5)
+                 ~~~~~~~~~~~~~~~~                                                             
+    New:         tf.compat.v1.summary.audio("data", data, sample_rate=FLAGS.sample_rate, max_outputs=5)
+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~                                                             
+
+'../audio-mps/train.py' Line 75
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.summary.histogram' to 'tf.compat.v1.summary.histogram'
+
+    Old:         tf.summary.histogram("frequencies", model.freqs / (2 * np.pi))
+                 ~~~~~~~~~~~~~~~~~~~~                                           
+    New:         tf.compat.v1.summary.histogram("frequencies", model.freqs / (2 * np.pi))
+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                                           
+
+'../audio-mps/train.py' Line 80
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.summary.image' to 'tf.compat.v1.summary.image'
+
+    Old:             tf.summary.image("data_waveform", data_waveform_op)
+                     ~~~~~~~~~~~~~~~~                                    
+    New:             tf.compat.v1.summary.image("data_waveform", data_waveform_op)
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~                                    
+
+'../audio-mps/train.py' Line 85
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.summary.image' to 'tf.compat.v1.summary.image'
+
+    Old:                 tf.summary.image("sample_waveform", sample_waveform_op)
+                         ~~~~~~~~~~~~~~~~                                        
+    New:                 tf.compat.v1.summary.image("sample_waveform", sample_waveform_op)
+                         ~~~~~~~~~~~~~~~~~~~~~~~~~~                                        
+
+'../audio-mps/train.py' Line 88
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.get_variable' to 'tf.compat.v1.get_variable'
+
+    Old:     step = tf.get_variable("global_step", [], tf.int64, tf.zeros_initializer(), trainable=False)
+                    ~~~~~~~~~~~~~~~                                                                       
+    New:     step = tf.compat.v1.get_variable("global_step", [], tf.int64, tf.zeros_initializer(), trainable=False)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~                                                                       
+
+'../audio-mps/train.py' Line 89
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.train.AdamOptimizer' to 'tf.compat.v1.train.AdamOptimizer'
+
+    Old:     train_op = tf.train.AdamOptimizer(learning_rate=hparams.learning_rate).minimize(total_loss, global_step=step)
+                        ~~~~~~~~~~~~~~~~~~~~~~                                                                             
+    New:     train_op = tf.compat.v1.train.AdamOptimizer(learning_rate=hparams.learning_rate).minimize(total_loss, global_step=step)
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                                                                             
+
+'../audio-mps/train.py' Line 97
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.app.run' to 'tf.compat.v1.app.run'
+
+    Old:     tf.app.run(main)             ~~~~~~~~~~      
+    New:     tf.compat.v1.app.run(main)             ~~~~~~~~~~~~~~~~~~~~      
+
+
+--------------------------------------------------------------------------------
+Processing file '../audio-mps/follow_vae.py'
+ outputting to './new/follow_vae.py'
+--------------------------------------------------------------------------------
+
+'../audio-mps/follow_vae.py' Line 56
+--------------------------------------------------------------------------------
+
+WARNING: tf.zeros_like and tf.ones_like no longer have the optimize argument in TF 2.0 or after (also, `tensor' argument is renamed to `input').
+The calls have been converted to compat.v1 for safety (even though  they may already have been correct).
+
+    Old:     batch_zeros = tf.zeros_like(data[:, 0])
+                           ~~~~~~~~~~~~~             
+    New:     batch_zeros = tf.zeros_like(data[:, 0])
+                           ~~~~~~~~~~~~~             
+
+'../audio-mps/follow_vae.py' Line 59
+--------------------------------------------------------------------------------
+
+Added keyword 'a' to reordered function 'tf.transpose'
+Added keyword 'perm' to reordered function 'tf.transpose'
+
+    Old:     data = tf.transpose(data, [1, 0])  # foldl goes along the first dimension
+                                                                                       
+    New:     data = tf.transpose(a=data, perm=[1, 0])  # foldl goes along the first dimension
+                                 ~~      ~~~~~                                                
+
+'../audio-mps/follow_vae.py' Line 62
+--------------------------------------------------------------------------------
+
+Added keyword 'input_tensor' to reordered function 'tf.reduce_mean'
+
+    Old:     return tf.reduce_mean(loss)
+                                         
+    New:     return tf.reduce_mean(input_tensor=loss)
+                                   ~~~~~~~~~~~~~      
+
+'../audio-mps/follow_vae.py' Line 73
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.get_variable' to 'tf.compat.v1.get_variable'
+
+    Old:     R = tf.get_variable(name="R", shape=[self.bond_d, self.bond_d], dtype=tf.float32, initializer=None)
+                 ~~~~~~~~~~~~~~~                                                                                 
+    New:     R = tf.compat.v1.get_variable(name="R", shape=[self.bond_d, self.bond_d], dtype=tf.float32, initializer=None)
+                 ~~~~~~~~~~~~~~~~~~~~~~~~~                                                                                 
+
+'../audio-mps/follow_vae.py' Line 75
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.conj' to 'tf.math.conj'
+
+    Old:     exp = tf.einsum('ab,bc,ac->a', tf.conj(psi), R_c, psi)
+                                            ~~~~~~~                 
+    New:     exp = tf.einsum('ab,bc,ac->a', tf.math.conj(psi), R_c, psi)
+                                            ~~~~~~~~~~~~                 
+
+'../audio-mps/follow_vae.py' Line 76
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.real' to 'tf.math.real'
+
+    Old:     return 2 * tf.real(exp)
+                        ~~~~~~~      
+    New:     return 2 * tf.math.real(exp)
+                        ~~~~~~~~~~~~      
+
+'../audio-mps/follow_vae.py' Line 105
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.get_variable' to 'tf.compat.v1.get_variable'
+
+    Old:   step = tf.get_variable("global_step", [], tf.int64, tf.zeros_initializer(), trainable=False)
+                  ~~~~~~~~~~~~~~~                                                                       
+    New:   step = tf.compat.v1.get_variable("global_step", [], tf.int64, tf.zeros_initializer(), trainable=False)
+                  ~~~~~~~~~~~~~~~~~~~~~~~~~                                                                       
+
+'../audio-mps/follow_vae.py' Line 106
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.train.AdamOptimizer' to 'tf.compat.v1.train.AdamOptimizer'
+
+    Old:   train_op = tf.train.AdamOptimizer(1e-3).minimize(loss, global_step=step)
+                      ~~~~~~~~~~~~~~~~~~~~~~                                        
+    New:   train_op = tf.compat.v1.train.AdamOptimizer(1e-3).minimize(loss, global_step=step)
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                                        
+
+'../audio-mps/follow_vae.py' Line 112
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.metrics.mean' to 'tf.compat.v1.metrics.mean'
+
+    Old:       eval_metric_ops={"loss": tf.metrics.mean(loss)})
+                                        ~~~~~~~~~~~~~~~         
+    New:       eval_metric_ops={"loss": tf.compat.v1.metrics.mean(loss)})
+                                        ~~~~~~~~~~~~~~~~~~~~~~~~~         
+
+'../audio-mps/follow_vae.py' Line 119
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.FixedLenFeature' to 'tf.io.FixedLenFeature'
+
+    Old:       features = {"audio": tf.FixedLenFeature([2 ** 16], dtype=tf.float32)}
+                                    ~~~~~~~~~~~~~~~~~~                               
+    New:       features = {"audio": tf.io.FixedLenFeature([2 ** 16], dtype=tf.float32)}
+                                    ~~~~~~~~~~~~~~~~~~~~~                               
+
+'../audio-mps/follow_vae.py' Line 120
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.parse_single_example' to 'tf.io.parse_single_example'
+Added keyword 'serialized' to reordered function 'tf.parse_single_example'
+Added keyword 'features' to reordered function 'tf.parse_single_example'
+
+    Old:       parsed_features = tf.parse_single_example(example_proto, features)
+                                 ~~~~~~~~~~~~~~~~~~~~~~~                          
+    New:       parsed_features = tf.io.parse_single_example(serialized=example_proto, features=features)
+                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~ ~~~~~~~~~~~               ~~~~~~~~~          
+
+'../audio-mps/follow_vae.py' Line 131
+--------------------------------------------------------------------------------
+
+(Manual edit required) The `tf.data.Dataset.make_one_shot_iterator()` method has been removed. If you are using eager execution, you can iterate over `dataset` using a Python `for` loop. If you are using the Estimator API, you can return a dataset directly from your input functions without creating an iterator. As a last resort, please replace calls to that method on `dataset` with a call to `tf.compat.v1.data.make_one_shot_iterator(dataset)`.
+
+    Old:   train_input_fn = lambda: training_dataset.make_one_shot_iterator().get_next()
+                                                                                         
+    New:   train_input_fn = lambda: training_dataset.make_one_shot_iterator().get_next()
+                                                                                         
+
+'../audio-mps/follow_vae.py' Line 139
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.gfile.MakeDirs' to 'tf.io.gfile.makedirs'
+
+    Old:   tf.gfile.MakeDirs(FLAGS.model_dir)
+           ~~~~~~~~~~~~~~~~~                  
+    New:   tf.io.gfile.makedirs(FLAGS.model_dir)
+           ~~~~~~~~~~~~~~~~~~~~                  
+
+'../audio-mps/follow_vae.py' Line 155
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.app.run' to 'tf.compat.v1.app.run'
+
+    Old: tf.app.run()         ~~~~~~~~~~  
+    New: tf.compat.v1.app.run()         ~~~~~~~~~~~~~~~~~~~~  
+
+
+--------------------------------------------------------------------------------
+Processing file '../audio-mps/make-small-dataset.py'
+ outputting to './new/make-small-dataset.py'
+--------------------------------------------------------------------------------
+
+'../audio-mps/make-small-dataset.py' Line 4
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.InteractiveSession' to 'tf.compat.v1.InteractiveSession'
+
+    Old: sess = tf.InteractiveSession()
+                ~~~~~~~~~~~~~~~~~~~~~   
+    New: sess = tf.compat.v1.InteractiveSession()
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~   
+
+'../audio-mps/make-small-dataset.py' Line 18
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.python_io.TFRecordWriter' to 'tf.io.TFRecordWriter'
+
+    Old: with tf.python_io.TFRecordWriter(train_filename) as writer:
+              ~~~~~~~~~~~~~~~~~~~~~~~~~~~                            
+    New: with tf.io.TFRecordWriter(train_filename) as writer:
+              ~~~~~~~~~~~~~~~~~~~~                            
+
+
+--------------------------------------------------------------------------------
+Processing file '../audio-mps/data.py'
+ outputting to './new/data.py'
+--------------------------------------------------------------------------------
+
+'../audio-mps/data.py' Line 4
+--------------------------------------------------------------------------------
+
+tf.flags has been removed, please use the argparse or absl module if you need command line parsing.
+
+    Old: FLAGS = tf.flags.FLAGS
+                 ~~~~~~~~       
+    New: FLAGS = tf.flags.FLAGS
+                 ~~~~~~~~       
+
+'../audio-mps/data.py' Line 15
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.random_gamma' to 'tf.random.gamma'
+
+    Old:         delays = tf.stack(input_length * [tf.random_gamma([hps.minibatch_size], alpha=2, beta=2/delay_time)], axis=-1)
+                                                   ~~~~~~~~~~~~~~~                                                              
+    New:         delays = tf.stack(input_length * [tf.random.gamma([hps.minibatch_size], alpha=2, beta=2/delay_time)], axis=-1)
+                                                   ~~~~~~~~~~~~~~~                                                              
+
+'../audio-mps/data.py' Line 32
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.parse_single_example' to 'tf.io.parse_single_example'
+Added keyword 'serialized' to reordered function 'tf.parse_single_example'
+Added keyword 'features' to reordered function 'tf.parse_single_example'
+Renamed function 'tf.FixedLenFeature' to 'tf.io.FixedLenFeature'
+
+    Old:             tf.parse_single_example(example_proto, {"audio": tf.FixedLenFeature([FLAGS.sample_duration], dtype=tf.float32)})
+                     ~~~~~~~~~~~~~~~~~~~~~~~                          ~~~~~~~~~~~~~~~~~~                                              
+    New:             tf.io.parse_single_example(serialized=example_proto, features={"audio": tf.io.FixedLenFeature([FLAGS.sample_duration], dtype=tf.float32)})
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~ ~~~~~~~~~~~               ~~~~~~~~~          ~~~~~~~~~~~~~~~~~~~~~                                              
+
+'../audio-mps/data.py' Line 40
+--------------------------------------------------------------------------------
+
+(Manual edit required) The `tf.data.Dataset.make_one_shot_iterator()` method has been removed. If you are using eager execution, you can iterate over `dataset` using a Python `for` loop. If you are using the Estimator API, you can return a dataset directly from your input functions without creating an iterator. As a last resort, please replace calls to that method on `dataset` with a call to `tf.compat.v1.data.make_one_shot_iterator(dataset)`.
+
+    Old:         iterator = audio_dataset.make_one_shot_iterator()
+                                                                   
+    New:         iterator = audio_dataset.make_one_shot_iterator()
+                                                                   
+
+
+--------------------------------------------------------------------------------
+Processing file '../audio-mps/training_estimators.py'
+ outputting to './new/training_estimators.py'
+--------------------------------------------------------------------------------
+
+'../audio-mps/training_estimators.py' Line 65
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.summary.scalar' to 'tf.compat.v1.summary.scalar'
+
+    Old:   tf.summary.scalar("loss_function", tf.reshape(loss, []))
+           ~~~~~~~~~~~~~~~~~                                        
+    New:   tf.compat.v1.summary.scalar("loss_function", tf.reshape(loss, []))
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~                                        
+
+'../audio-mps/training_estimators.py' Line 67
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.train.get_or_create_global_step' to 'tf.compat.v1.train.get_or_create_global_step'
+
+    Old:   global_step = tf.train.get_or_create_global_step()
+                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~   
+    New:   global_step = tf.compat.v1.train.get_or_create_global_step()
+                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~   
+
+'../audio-mps/training_estimators.py' Line 68
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.train.AdamOptimizer' to 'tf.compat.v1.train.AdamOptimizer'
+
+    Old:   train_op = tf.train.AdamOptimizer(1e-3).minimize(loss, global_step=global_step)
+                      ~~~~~~~~~~~~~~~~~~~~~~                                               
+    New:   train_op = tf.compat.v1.train.AdamOptimizer(1e-3).minimize(loss, global_step=global_step)
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                                               
+
+'../audio-mps/training_estimators.py' Line 74
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.metrics.mean' to 'tf.compat.v1.metrics.mean'
+
+    Old:       eval_metric_ops={"loss": tf.metrics.mean(loss)})
+                                        ~~~~~~~~~~~~~~~         
+    New:       eval_metric_ops={"loss": tf.compat.v1.metrics.mean(loss)})
+                                        ~~~~~~~~~~~~~~~~~~~~~~~~~         
+
+'../audio-mps/training_estimators.py' Line 81
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.FixedLenFeature' to 'tf.io.FixedLenFeature'
+
+    Old:       features = {"audio": tf.FixedLenFeature([2 ** 16], dtype=tf.float32)}
+                                    ~~~~~~~~~~~~~~~~~~                               
+    New:       features = {"audio": tf.io.FixedLenFeature([2 ** 16], dtype=tf.float32)}
+                                    ~~~~~~~~~~~~~~~~~~~~~                               
+
+'../audio-mps/training_estimators.py' Line 82
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.parse_single_example' to 'tf.io.parse_single_example'
+Added keyword 'serialized' to reordered function 'tf.parse_single_example'
+Added keyword 'features' to reordered function 'tf.parse_single_example'
+
+    Old:       parsed_features = tf.parse_single_example(example_proto, features)
+                                 ~~~~~~~~~~~~~~~~~~~~~~~                          
+    New:       parsed_features = tf.io.parse_single_example(serialized=example_proto, features=features)
+                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~ ~~~~~~~~~~~               ~~~~~~~~~          
+
+'../audio-mps/training_estimators.py' Line 93
+--------------------------------------------------------------------------------
+
+(Manual edit required) The `tf.data.Dataset.make_one_shot_iterator()` method has been removed. If you are using eager execution, you can iterate over `dataset` using a Python `for` loop. If you are using the Estimator API, you can return a dataset directly from your input functions without creating an iterator. As a last resort, please replace calls to that method on `dataset` with a call to `tf.compat.v1.data.make_one_shot_iterator(dataset)`.
+
+    Old:   train_input_fn = lambda: training_dataset.make_one_shot_iterator().get_next()
+                                                                                         
+    New:   train_input_fn = lambda: training_dataset.make_one_shot_iterator().get_next()
+                                                                                         
+
+'../audio-mps/training_estimators.py' Line 101
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.gfile.MakeDirs' to 'tf.io.gfile.makedirs'
+
+    Old:   tf.gfile.MakeDirs(FLAGS.model_dir)
+           ~~~~~~~~~~~~~~~~~                  
+    New:   tf.io.gfile.makedirs(FLAGS.model_dir)
+           ~~~~~~~~~~~~~~~~~~~~                  
+
+'../audio-mps/training_estimators.py' Line 117
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.app.run' to 'tf.compat.v1.app.run'
+
+    Old: tf.app.run()         ~~~~~~~~~~  
+    New: tf.compat.v1.app.run()         ~~~~~~~~~~~~~~~~~~~~  
+
+
+--------------------------------------------------------------------------------
+Processing file '../audio-mps/reader.py'
+ outputting to './new/reader.py'
+--------------------------------------------------------------------------------
+
+'../audio-mps/reader.py' Line 29
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.contrib.data.shuffle_and_repeat' to 'tf.data.experimental.shuffle_and_repeat'
+
+    Old:         dataset = dataset.apply(tf.contrib.data.shuffle_and_repeat(buffer_size=10000))
+                                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                     
+    New:         dataset = dataset.apply(tf.data.experimental.shuffle_and_repeat(buffer_size=10000))
+                                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                     
+
+'../audio-mps/reader.py' Line 40
+--------------------------------------------------------------------------------
+
+(Manual edit required) The `tf.data.Dataset.make_one_shot_iterator()` method has been removed. If you are using eager execution, you can iterate over `dataset` using a Python `for` loop. If you are using the Estimator API, you can return a dataset directly from your input functions without creating an iterator. As a last resort, please replace calls to that method on `dataset` with a call to `tf.compat.v1.data.make_one_shot_iterator(dataset)`.
+
+    Old:         return dataset.make_one_shot_iterator()
+                                                         
+    New:         return dataset.make_one_shot_iterator()
+                                                         
+
+'../audio-mps/reader.py' Line 45
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.FixedLenFeature' to 'tf.io.FixedLenFeature'
+
+    Old:             "note": tf.FixedLenFeature([1], dtype=tf.int64),
+                             ~~~~~~~~~~~~~~~~~~                       
+    New:             "note": tf.io.FixedLenFeature([1], dtype=tf.int64),
+                             ~~~~~~~~~~~~~~~~~~~~~                       
+
+'../audio-mps/reader.py' Line 46
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.FixedLenFeature' to 'tf.io.FixedLenFeature'
+
+    Old:             "pitch": tf.FixedLenFeature([1], dtype=tf.int64),
+                              ~~~~~~~~~~~~~~~~~~                       
+    New:             "pitch": tf.io.FixedLenFeature([1], dtype=tf.int64),
+                              ~~~~~~~~~~~~~~~~~~~~~                       
+
+'../audio-mps/reader.py' Line 47
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.FixedLenFeature' to 'tf.io.FixedLenFeature'
+
+    Old:             "sample_rate": tf.FixedLenFeature([1], dtype=tf.int64),
+                                    ~~~~~~~~~~~~~~~~~~                       
+    New:             "sample_rate": tf.io.FixedLenFeature([1], dtype=tf.int64),
+                                    ~~~~~~~~~~~~~~~~~~~~~                       
+
+'../audio-mps/reader.py' Line 48
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.FixedLenFeature' to 'tf.io.FixedLenFeature'
+
+    Old:             "instrument_source_str": tf.FixedLenFeature([1], dtype=tf.string),
+                                              ~~~~~~~~~~~~~~~~~~                        
+    New:             "instrument_source_str": tf.io.FixedLenFeature([1], dtype=tf.string),
+                                              ~~~~~~~~~~~~~~~~~~~~~                        
+
+'../audio-mps/reader.py' Line 49
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.FixedLenFeature' to 'tf.io.FixedLenFeature'
+
+    Old:             "instrument_family_str": tf.FixedLenFeature([1], dtype=tf.string),
+                                              ~~~~~~~~~~~~~~~~~~                        
+    New:             "instrument_family_str": tf.io.FixedLenFeature([1], dtype=tf.string),
+                                              ~~~~~~~~~~~~~~~~~~~~~                        
+
+'../audio-mps/reader.py' Line 50
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.FixedLenFeature' to 'tf.io.FixedLenFeature'
+
+    Old:             "audio": tf.FixedLenFeature([64000], dtype=tf.float32),
+                              ~~~~~~~~~~~~~~~~~~                             
+    New:             "audio": tf.io.FixedLenFeature([64000], dtype=tf.float32),
+                              ~~~~~~~~~~~~~~~~~~~~~                             
+
+'../audio-mps/reader.py' Line 52
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.parse_single_example' to 'tf.io.parse_single_example'
+Added keyword 'serialized' to reordered function 'tf.parse_single_example'
+Added keyword 'features' to reordered function 'tf.parse_single_example'
+
+    Old:       return tf.parse_single_example(example_proto, features)
+                      ~~~~~~~~~~~~~~~~~~~~~~~                          
+    New:       return tf.io.parse_single_example(serialized=example_proto, features=features)
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~ ~~~~~~~~~~~               ~~~~~~~~~          
+
+
+--------------------------------------------------------------------------------
+Processing file '../audio-mps/tests/test_model.py'
+ outputting to './new/tests/test_model.py'
+--------------------------------------------------------------------------------
+
+'../audio-mps/tests/test_model.py' Line 9
+--------------------------------------------------------------------------------
+
+tf.flags has been removed, please use the argparse or absl module if you need command line parsing.
+
+    Old: tf.flags.DEFINE_integer("sample_duration", 2**8, "Duration of samples (as integer).")
+         ~~~~~~~~                                                                              
+    New: tf.flags.DEFINE_integer("sample_duration", 2**8, "Duration of samples (as integer).")
+         ~~~~~~~~                                                                              
+
+'../audio-mps/tests/test_model.py' Line 10
+--------------------------------------------------------------------------------
+
+tf.flags has been removed, please use the argparse or absl module if you need command line parsing.
+
+    Old: tf.flags.DEFINE_integer("sample_rate", 16000, "Sampling rate.")
+         ~~~~~~~~                                                        
+    New: tf.flags.DEFINE_integer("sample_rate", 16000, "Sampling rate.")
+         ~~~~~~~~                                                        
+
+'../audio-mps/tests/test_model.py' Line 11
+--------------------------------------------------------------------------------
+
+tf.flags has been removed, please use the argparse or absl module if you need command line parsing.
+
+    Old: FLAGS = tf.flags.FLAGS
+                 ~~~~~~~~       
+    New: FLAGS = tf.flags.FLAGS
+                 ~~~~~~~~       
+
+'../audio-mps/tests/test_model.py' Line 24
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.global_variables_initializer' to 'tf.compat.v1.global_variables_initializer'
+
+    Old:             sess.run(tf.global_variables_initializer())
+                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    
+    New:             sess.run(tf.compat.v1.global_variables_initializer())
+                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    
+
+'../audio-mps/tests/test_model.py' Line 25
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.matrix_diag_part' to 'tf.linalg.diag_part'
+
+    Old:             self.assertAllClose(tf.matrix_diag_part(model.R.eval()), hparams.bond_dim * [0.])
+                                         ~~~~~~~~~~~~~~~~~~~                                           
+    New:             self.assertAllClose(tf.linalg.diag_part(model.R.eval()), hparams.bond_dim * [0.])
+                                         ~~~~~~~~~~~~~~~~~~~                                           
+
+'../audio-mps/tests/test_model.py' Line 38
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.global_variables_initializer' to 'tf.compat.v1.global_variables_initializer'
+
+    Old:             sess.run(tf.global_variables_initializer())
+                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    
+    New:             sess.run(tf.compat.v1.global_variables_initializer())
+                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    
+
+'../audio-mps/tests/test_model.py' Line 46
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.global_variables_initializer' to 'tf.compat.v1.global_variables_initializer'
+
+    Old:             sess.run(tf.global_variables_initializer())
+                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    
+    New:             sess.run(tf.compat.v1.global_variables_initializer())
+                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    
+
+'../audio-mps/tests/test_model.py' Line 47
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.trace' to 'tf.linalg.trace'
+
+    Old:             self.assertAllClose(model.rho_0, model.rho_0 / tf.trace(model.rho_0))
+                                                                    ~~~~~~~~               
+    New:             self.assertAllClose(model.rho_0, model.rho_0 / tf.linalg.trace(model.rho_0))
+                                                                    ~~~~~~~~~~~~~~~               
+
+'../audio-mps/tests/test_model.py' Line 48
+--------------------------------------------------------------------------------
+
+Added keyword 'a' to reordered function 'tf.transpose'
+
+    Old:             self.assertAllClose(model.rho_0, tf.transpose(model.rho_0, conjugate=True))
+                                                                                                 
+    New:             self.assertAllClose(model.rho_0, tf.transpose(a=model.rho_0, conjugate=True))
+                                                                   ~~                              
+
+'../audio-mps/tests/test_model.py' Line 56
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.global_variables_initializer' to 'tf.compat.v1.global_variables_initializer'
+
+    Old:             sess.run(tf.global_variables_initializer())
+                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    
+    New:             sess.run(tf.compat.v1.global_variables_initializer())
+                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    
+
+'../audio-mps/tests/test_model.py' Line 57
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.trace' to 'tf.linalg.trace'
+WARNING: tf.zeros_like and tf.ones_like no longer have the optimize argument in TF 2.0 or after (also, `tensor' argument is renamed to `input').
+The calls have been converted to compat.v1 for safety (even though  they may already have been correct).
+
+    Old:             self.assertAllClose(tf.trace(rho_out), tf.ones_like(rho_out[:,:,0,0]), rtol=1e-5)
+                                         ~~~~~~~~           ~~~~~~~~~~~~                               
+    New:             self.assertAllClose(tf.linalg.trace(rho_out), tf.ones_like(rho_out[:,:,0,0]), rtol=1e-5)
+                                         ~~~~~~~~~~~~~~~           ~~~~~~~~~~~~                               
+
+'../audio-mps/tests/test_model.py' Line 66
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.global_variables_initializer' to 'tf.compat.v1.global_variables_initializer'
+
+    Old:             sess.run(tf.global_variables_initializer())
+                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    
+    New:             sess.run(tf.compat.v1.global_variables_initializer())
+                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    
+
+'../audio-mps/tests/test_model.py' Line 67
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.trace' to 'tf.linalg.trace'
+
+    Old:             self.assertAllClose(tf.trace(rho_out), tf.ones([samples, FLAGS.sample_duration]), rtol=1e-4)
+                                         ~~~~~~~~                                                                 
+    New:             self.assertAllClose(tf.linalg.trace(rho_out), tf.ones([samples, FLAGS.sample_duration]), rtol=1e-4)
+                                         ~~~~~~~~~~~~~~~                                                                 
+
+'../audio-mps/tests/test_model.py' Line 80
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.global_variables_initializer' to 'tf.compat.v1.global_variables_initializer'
+
+    Old:             sess.run(tf.global_variables_initializer())
+                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    
+    New:             sess.run(tf.compat.v1.global_variables_initializer())
+                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    
+
+'../audio-mps/tests/test_model.py' Line 102
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.global_variables_initializer' to 'tf.compat.v1.global_variables_initializer'
+
+    Old:             sess.run(tf.global_variables_initializer())
+                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    
+    New:             sess.run(tf.compat.v1.global_variables_initializer())
+                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    
+
+'../audio-mps/tests/test_model.py' Line 112
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.global_variables_initializer' to 'tf.compat.v1.global_variables_initializer'
+
+    Old:             sess.run(tf.global_variables_initializer())
+                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    
+    New:             sess.run(tf.compat.v1.global_variables_initializer())
+                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    
+
+'../audio-mps/tests/test_model.py' Line 121
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.global_variables_initializer' to 'tf.compat.v1.global_variables_initializer'
+
+    Old:             sess.run(tf.global_variables_initializer())
+                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    
+    New:             sess.run(tf.compat.v1.global_variables_initializer())
+                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    
+
+'../audio-mps/tests/test_model.py' Line 122
+--------------------------------------------------------------------------------
+
+Added keyword 'tensor' to reordered function 'tf.norm'
+WARNING: tf.zeros_like and tf.ones_like no longer have the optimize argument in TF 2.0 or after (also, `tensor' argument is renamed to `input').
+The calls have been converted to compat.v1 for safety (even though  they may already have been correct).
+
+    Old:             self.assertAllClose(tf.norm(psi_out, axis=-1), tf.ones_like(psi_out[:,:,0]), rtol=1e-5)
+                                                                    ~~~~~~~~~~~~                             
+    New:             self.assertAllClose(tf.norm(tensor=psi_out, axis=-1), tf.ones_like(psi_out[:,:,0]), rtol=1e-5)
+                                                 ~~~~~~~                   ~~~~~~~~~~~~                             
+
+'../audio-mps/tests/test_model.py' Line 135
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.global_variables_initializer' to 'tf.compat.v1.global_variables_initializer'
+
+    Old:             sess.run(tf.global_variables_initializer())
+                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    
+    New:             sess.run(tf.compat.v1.global_variables_initializer())
+                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    
+
+'../audio-mps/tests/test_model.py' Line 157
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.global_variables_initializer' to 'tf.compat.v1.global_variables_initializer'
+
+    Old:             sess.run(tf.global_variables_initializer())
+                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    
+    New:             sess.run(tf.compat.v1.global_variables_initializer())
+                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    
+
+
+--------------------------------------------------------------------------------
+Processing file '../audio-mps/tests/test_data.py'
+ outputting to './new/tests/test_data.py'
+--------------------------------------------------------------------------------
+
+'../audio-mps/tests/test_data.py' Line 8
+--------------------------------------------------------------------------------
+
+tf.flags has been removed, please use the argparse or absl module if you need command line parsing.
+
+    Old: FLAGS = tf.flags.FLAGS
+                 ~~~~~~~~       
+    New: FLAGS = tf.flags.FLAGS
+                 ~~~~~~~~       
+
+
